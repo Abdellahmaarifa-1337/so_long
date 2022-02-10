@@ -20,3 +20,8 @@ int	main(void)
 	mlx_put_image_to_window(mlx, win, img, 500,200);
 	mlx_loop(mlx);
 }
+
+/* 
+hooks stopping
+destroy the wind and exite
+*/

@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 22:10:53 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/10 00:35:08 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/10 11:41:38 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	move_hooks(t_global **global)
 							// game over
 							mlx_clear_window( (*global)->mlx, (*global)->win);
 							printf("game over!\n");
-							(*global)->game_on = -1;
+							if ((*global)->game_on == 1)
+								(*global)->game_on = -1;
 						}
 						(*global)->map->line[i][j] = '0';
 						(*global)->map->line[i + 1][j] = 'H';
@@ -109,7 +110,8 @@ void	move_hooks(t_global **global)
 							// game over
 							mlx_clear_window( (*global)->mlx, (*global)->win);
 							printf("game over!\n");
-							(*global)->game_on = -1;
+							if ((*global)->game_on == 1)
+								(*global)->game_on = -1;
 						}
 						(*global)->map->line[i][j] = '0';
 						(*global)->map->line[i - 1][j] = 'H';
@@ -147,7 +149,7 @@ int	render(t_global *global)
 	size_t		i;
 	size_t		j;
 	//char		*s;
-
+	printf("global->game_on %d\n", global->game_on);
 	if (global->game_on == 1)
 	{
 		// counter !

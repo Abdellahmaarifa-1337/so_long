@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:34:20 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/10 00:12:47 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/10 12:58:30 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,14 @@ char	*ft_strdup(const char	*src);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_itoa(int n);
 
+
+// MOVES
+void	event_tracker(t_global *global, char c);
+void	move_down(t_global *global);
+void 	move(size_t *i, size_t *j, t_global *global, int direction);
+void	move_up(t_global *global);
+void	move_left(t_global *global);
+void	move_right(t_global *global);
 /* SO_LONG HELPERS */
 int		render(t_global *global);
 #endif

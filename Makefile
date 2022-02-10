@@ -4,7 +4,7 @@ CFLAGS =  -Wall -Wextra -Werror -g
 
 HELPERS_SRC = src/helpers/ft_strchr.c src/helpers/error_handler.c \
 			src/helpers/map_parsser.c src/helpers/render.c \
-			src/helpers/ft_itoa.c
+			src/helpers/ft_itoa.c src/helpers/player_moves.c
 GET_NEXT_LINE_SRC = src/get_next_line/get_next_line_utils.c \
 					src/get_next_line/get_next_line.c 
 

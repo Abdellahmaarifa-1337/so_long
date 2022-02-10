@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:24:08 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/10 00:37:34 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/10 13:11:28 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,122 +41,15 @@ void	init_images(t_global	*global)
 	global->background_img = mlx_xpm_file_to_image(global->mlx,
 		"src/img/background.xpm", &dm[0], &dm[1]);
 }
-
-void	event_tracker(t_global *global, char c)
+int ft_close (int keycode)
 {
-	if (c == 'H')
-	{
-		//game over
-		global->game_on = -1;
-		mlx_clear_window( global->mlx, global->win);
-	}
-	else if (c == 'E')
-	{
-		if (global->current_point == global->total_point)
-		{
-			// win the game
-			global->game_on = 0;
-			mlx_clear_window( global->mlx, global->win);
-			printf("win the game\n");
-		}
-	}
-	printf("cur : %zu, all: %zu\n", global->current_point, global->total_point);
-}
-
-void	move_down(t_global *global)
-{
-	char	*p;
-	if (global->player_position[0] < global->map->height - 2)
-	{
-		p = &(global->map->line[global->player_position[0] + 1][global->player_position[1]]);
-		
-		if (*p != '1')
-		{
-			if (*p != 'E' && *p != 'H')
-			{
-				if (*p == 'C')
-					global->current_point++;
-				global->map->line[global->player_position[0]][global->player_position[1]] = '0';
-				*p = 'P';
-				global->player_position[0] += 1;
-				global->moves_count++;
-			}
-			event_tracker(global, *p);
-		}
-	}
-}
-void	move_up(t_global *global)
-{
-	char	*p;
-	if (global->player_position[0] > 1)
-	{
-		p = &(global->map->line[global->player_position[0] - 1][global->player_position[1]]);
-		
-		if (*p != '1')
-		{
-			if (*p != 'E'  && *p != 'H')
-			{
-				if (*p == 'C')
-					global->current_point++;
-				global->map->line[global->player_position[0]][global->player_position[1]] = '0';
-				*p = 'P';
-				global->player_position[0] -= 1;
-				global->moves_count++;
-			}
-			event_tracker(global, *p);
-		}
-	}
-}
-
-void	move_left(t_global *global)
-{
-	char	*p;
-	if (global->player_position[1] > 1)
-	{
-		p = &(global->map->line[global->player_position[0]][global->player_position[1] - 1]);
-		
-		if (*p != '1')
-		{
-			if (*p != 'E'  && *p != 'H')
-			{
-				if (*p == 'C')
-					global->current_point++;
-				global->map->line[global->player_position[0]][global->player_position[1]] = '0';
-				*p = 'P';
-				global->player_position[1] -= 1;
-				global->moves_count++;
-			}
-			event_tracker(global, *p);
-		}
-	}
-}
-
-void	move_right(t_global *global)
-{
-	char	*p;
-	if (global->player_position[1] < global->map->width - 2)
-	{
-		p = &(global->map->line[global->player_position[0]][global->player_position[1] + 1]);
-		
-		if (*p != '1')
-		{
-			if (*p != 'E'  && *p != 'H')
-			{
-				if (*p == 'C')
-					global->current_point++;
-				global->map->line[global->player_position[0]][global->player_position[1]] = '0';
-				*p = 'P';
-				global->player_position[1] += 1;
-				global->moves_count++;
-			}
-			event_tracker(global, *p);
-		}
-	}
+	(void) keycode;
+	exit(0);
+	return (1);
 }
 
 int	key_hook(int keycode, t_global *global)
 {
-	printf("Hello from key_hook %d, %d!\n",keycode, global->img_nb);
 	if (keycode == 13)
 		move_up(global);
 	else if (keycode == 1)
@@ -165,6 +58,8 @@ int	key_hook(int keycode, t_global *global)
 		move_left(global);
 	else if (keycode == 2)
 		move_right(global);
+	else if (keycode == 53)
+		exit(0);
 	return (0);
 }
 
@@ -177,12 +72,10 @@ void	set_init_game(t_global *global)
 	global->current_point = 0;
 	global->hook_move = malloc(sizeof(int *) * global->map->height);
 
-	i = 0;
-	while (i < global->map->height)
-	{
+	i = -1;
+	while (++i < global->map->height)
 		global->hook_move[i] = malloc(sizeof(int) * global->map->width);
-		i++;
-	}
+
 	i = 0;
 	while (i < global->map->height)
 	{
@@ -227,6 +120,7 @@ int	main(int ac, char **av)
 	global.moves_count = 0;
 	mlx_key_hook(global.win, key_hook, &global);
 	mlx_loop_hook(global.mlx, &render, &global);
+	mlx_hook(global.win, 17, 1L<<5, ft_close, &global);
 	mlx_loop(global.mlx);
 	//printf("working..");
 	return (0);
