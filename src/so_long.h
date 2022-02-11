@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:34:20 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/10 12:58:30 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/10 20:30:49 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,18 @@ typedef struct t_map {
 	size_t		width;
 }	t_map;
 
+typedef struct t_hook
+{
+	int x;
+	int y;
+	int direction;
+} t_hook;
 
 typedef struct global
 {
 	t_map	*map;
+	t_hook	**hooks;
+	int		hooks_size;
 	int		**hook_move;
 	void	*win;
 	void	*mlx;
@@ -70,6 +78,8 @@ void 	move(size_t *i, size_t *j, t_global *global, int direction);
 void	move_up(t_global *global);
 void	move_left(t_global *global);
 void	move_right(t_global *global);
+char	last_char(char *s);
 /* SO_LONG HELPERS */
+// void calc_direction_hooks(t_global *global);
 int		render(t_global *global);
 #endif

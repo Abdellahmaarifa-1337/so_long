@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:24:08 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/10 13:11:28 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/11 00:23:06 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,19 @@ void	set_init_game(t_global *global)
 	global->total_point = 0;
 	global->current_point = 0;
 	global->hook_move = malloc(sizeof(int *) * global->map->height);
-
 	i = -1;
+	int h_count = 0;
 	while (++i < global->map->height)
 		global->hook_move[i] = malloc(sizeof(int) * global->map->width);
-
-	i = 0;
-	while (i < global->map->height)
+	i = -1;
+	while (++i < global->map->height)
 	{
-		j = 0;
-		global->hook_move[i][j] = 0;
-		while (j < global->map->width)
+		j = -1;
+		while (++j < global->map->width)
 		{
-
+			if (global->map->line[i][j] == 'H')
+				h_count++;
+			global->hook_move[i][j] = -1;
 			if (global->map->line[i][j] == 'P')
 			{
 				global->player_position[0] = i;
@@ -91,10 +91,48 @@ void	set_init_game(t_global *global)
 			}
 			if (global->map->line[i][j] == 'C')
 				global->total_point++;
+		}
+	}
+	global->hooks_size = h_count;
+	global->hooks = (t_hook **)malloc(sizeof(t_hook *) * h_count);
+	i = 0;
+	j = 0;
+	int n = 0;
+	while (i < global->map->height)
+	{
+		j = 0;
+		while ( j < global->map->width)
+		{
+			t_hook *hooker;
+			hooker = malloc(sizeof(hooker));
+			if (global->map->line[i][j] == 'H')
+			{
+				hooker->x = i;
+				hooker->y = j;
+				if (i + 1 < global->map->height 
+ 						&& (global->map->line[i + 1][j] == '0' ||
+ 						global->map->line[i + 1][j] == 'P'))
+				{
+					hooker->direction = 0;
+				}else if (i > 1 
+ 						&& (global->map->line[i - 1][j] == '0' ||
+ 						 global->map->line[i - 1][j] == 'P'))
+				{
+					hooker->direction = 1;
+				}
+				else
+				{
+					hooker->direction = 2;
+				}
+				global->hooks[n] = hooker;
+				n++;
+			}
 			j++;
 		}
 		i++;
 	}
+	
+	//calc_direction_hooks(global);
 }
 
 int	main(int ac, char **av)
@@ -109,8 +147,8 @@ int	main(int ac, char **av)
 		throw_err("No memory is avialbale to lunch the game", &map);
 	map_parsser(av[1], &global.map);
 	global.mlx = mlx_init();
-	global.win = mlx_new_window(global.mlx, (global.map)->width * 98,
-			(global.map)->height * 95, "hellow world");
+	global.win = mlx_new_window(global.mlx, (global.map)->width * 60,
+			(global.map)->height * 60, "hellow world");
 	init_images(&global);
 	set_init_game(&global);
 	global.img_nb = 0;

@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 19:19:52 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/09 18:53:54 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/10 19:02:06 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,7 @@ int	map_chr(t_map *map, char c)
 	return (k);
 }
 
-char last_char(char *s)
-{
-	int		i;
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (s[i - 1]);
-}
+
 
 int	calc_lines(char *path, t_map **map)
 {
