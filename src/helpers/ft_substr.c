@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   last_char.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 18:53:37 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/10 18:54:01 by amaarifa         ###   ########.fr       */
+/*   Created: 2022/02/12 17:24:56 by amaarifa          #+#    #+#             */
+/*   Updated: 2022/02/12 17:25:38 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char last_char(char *s)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
-	int		i;
+	char	*substr;
+	size_t	i;
+
 	if (!s)
 		return (0);
 	i = 0;
-	while (s[i])
+	if (start >= ft_strlen(s))
+	{
+		free(s);
+		return (ft_strdup(""));
+	}
+	if (ft_strlen(s) >= len)
+		substr = (char *)malloc((len + 1) * sizeof(char));
+	else
+		substr = (char *)malloc((ft_strlen(s) - start + 1) * sizeof(char));
+	if (!substr)
+		return (0);
+	while (i < len && i < ft_strlen(s))
+	{
+		substr[i] = s[start + i];
 		i++;
-	return (s[i - 1]);
+	}
+	substr[len] = '\0';
+	return (substr);
 }

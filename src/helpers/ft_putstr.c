@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 19:24:51 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/12 19:55:32 by amaarifa         ###   ########.fr       */
+/*   Created: 2022/02/12 15:05:09 by amaarifa          #+#    #+#             */
+/*   Updated: 2022/02/12 16:34:14 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_putstr(char *s)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if (!c)
-		return ((char *) &s[i]);
-	return (0);
+	while (*s)
+		write(0, s++, 1);
 }

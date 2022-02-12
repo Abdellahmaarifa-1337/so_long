@@ -5,12 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/22 09:04:25 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/10 00:07:11 by amaarifa         ###   ########.fr       */
+/*   Created: 2022/02/12 17:23:59 by amaarifa          #+#    #+#             */
+/*   Updated: 2022/02/12 17:29:12 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "../so_long.h"
 
 char	*ft_strdup(const char	*src)

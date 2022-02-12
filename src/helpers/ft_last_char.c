@@ -1,56 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_last_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 09:15:30 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/12 23:35:18 by amaarifa         ###   ########.fr       */
+/*   Created: 2022/02/12 19:59:38 by amaarifa          #+#    #+#             */
+/*   Updated: 2022/02/12 19:59:50 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	count_int_char(int n)
+void	ft_last_char(char *s, char *c)
 {
-	int	i;
+	int		i;
 
+	if (!s)
+		return ;
 	i = 0;
-	if (n < 0)
+	while (s[i])
 		i++;
-	while (n)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_itoa(int n)
-{
-	int		s;
-	char	*str;
-	long	nb;
-
-	if (n == 0)
-		return (ft_strdup("0"));
-	s = count_int_char(n);
-	str = (char *)malloc(sizeof(char) * (s + 1));
-	if (!str)
-		return (0);
-	str[s] = '\0';
-	nb = n;
-	if (n < 0)
-	{
-		str[0] = '-';
-		nb *= -1;
-	}		
-	while (nb > 0)
-	{
-		str[s - 1] = (nb % 10) + 48;
-		nb /= 10;
-		s--;
-	}
-	return (str);
+	*c = s[i - 1];
 }

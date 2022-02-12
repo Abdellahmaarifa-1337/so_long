@@ -5,25 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 15:39:58 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/10 00:06:07 by amaarifa         ###   ########.fr       */
+/*   Created: 2022/02/12 17:22:45 by amaarifa          #+#    #+#             */
+/*   Updated: 2022/02/12 17:23:20 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "../so_long.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int		size;
 	int		i;
 	int		j;
 	char	*s;
 
 	if (!s1 || !s2)
 		return (0);
-	size = ft_strlen(s1) + ft_strlen(s2);
-	s = (char *)malloc((size + 1) * sizeof(char));
+	s = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!s)
 		return (0);
 	i = 0;
@@ -39,5 +36,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	s[i + j] = '\0';
+	free(s1);
 	return (s);
 }

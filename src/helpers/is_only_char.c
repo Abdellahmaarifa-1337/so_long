@@ -1,56 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   is_only_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 09:15:30 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/12 23:35:18 by amaarifa         ###   ########.fr       */
+/*   Created: 2022/02/12 19:58:06 by amaarifa          #+#    #+#             */
+/*   Updated: 2022/02/12 19:59:59 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	count_int_char(int n)
+int	is_only_char(char *line, char *chars)
 {
 	int	i;
 
 	i = 0;
-	if (n < 0)
-		i++;
-	while (n)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_itoa(int n)
-{
-	int		s;
-	char	*str;
-	long	nb;
-
-	if (n == 0)
-		return (ft_strdup("0"));
-	s = count_int_char(n);
-	str = (char *)malloc(sizeof(char) * (s + 1));
-	if (!str)
+	if (!line)
 		return (0);
-	str[s] = '\0';
-	nb = n;
-	if (n < 0)
+	while (line[i])
 	{
-		str[0] = '-';
-		nb *= -1;
-	}		
-	while (nb > 0)
-	{
-		str[s - 1] = (nb % 10) + 48;
-		nb /= 10;
-		s--;
+		if (!ft_strchr(chars, line[i]))
+			break ;
+		i++;
 	}
-	return (str);
+	if (line[i])
+		return (0);
+	return (1);
 }

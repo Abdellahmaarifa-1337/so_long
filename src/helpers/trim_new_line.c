@@ -1,56 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   trim_new_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 09:15:30 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/12 23:35:18 by amaarifa         ###   ########.fr       */
+/*   Created: 2022/02/12 19:58:51 by amaarifa          #+#    #+#             */
+/*   Updated: 2022/02/12 19:59:05 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	count_int_char(int n)
+char	*trim_new_line(char *s)
 {
 	int	i;
 
-	i = 0;
-	if (n < 0)
-		i++;
-	while (n)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_itoa(int n)
-{
-	int		s;
-	char	*str;
-	long	nb;
-
-	if (n == 0)
-		return (ft_strdup("0"));
-	s = count_int_char(n);
-	str = (char *)malloc(sizeof(char) * (s + 1));
-	if (!str)
+	if (!s)
 		return (0);
-	str[s] = '\0';
-	nb = n;
-	if (n < 0)
-	{
-		str[0] = '-';
-		nb *= -1;
-	}		
-	while (nb > 0)
-	{
-		str[s - 1] = (nb % 10) + 48;
-		nb /= 10;
-		s--;
-	}
-	return (str);
+	i = 0;
+	while (s[i])
+		i++;
+	if (s[i - 1] == '\n')
+		s[i - 1] = '\0';
+	return (s);
 }
