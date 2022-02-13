@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 14:48:36 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/13 17:46:40 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 18:36:08 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_global
 }	t_global;
 
 /* ERRORS HANDLER */
-void	throw_error(int error_code, t_global *global);
+void	throw_error(int error_code);
 
 /* MAP PARSER */
 t_map	*map_parser(char *map_file, t_global *global);

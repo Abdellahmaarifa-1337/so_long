@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:02:03 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/13 17:05:43 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 18:36:17 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	map_chr(t_global *global, char c)
 		i++;
 	}
 	if (c == 'P' && k > 1)
-		throw_error(9, global);
+		throw_error(9);
 	return (k);
 }

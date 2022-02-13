@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 14:51:37 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/12 23:00:22 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 18:35:02 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ int	ft_close(int keycode)
 	return (1);
 }
 
-void	throw_error(int error_code, t_global *global)
+void	throw_error(int error_code)
 {
-	(void) global;
 	print_error(error_code);
 	exit(1);
 }

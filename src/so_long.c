@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 14:41:59 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/13 17:46:22 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 18:38:25 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int ac, char **av)
 	t_global	global;
 
 	if (ac != 2)
-		throw_error(1, &global);
+		throw_error(1);
 	map_parser(av[1], &global);
 	global.game_cntl.mlx = mlx_init();
 	global.game_cntl.win = mlx_new_window(global.game_cntl.mlx,

@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:18:53 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/13 17:46:06 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 18:36:43 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 t_map	*map_parser(char *map_file, t_global *global)
 {
 	if (!check_extension(map_file, ".ber"))
-		throw_error(2, global);
+		throw_error(2);
 	count_lines(map_file, global);
 	global->map.table = (char **)malloc(sizeof(char *) * global->map.height);
 	if (!global->map.table)
-		throw_error(0, global);
+		throw_error(0);
 	fill_map(map_file, global);
 	return (0);
 }

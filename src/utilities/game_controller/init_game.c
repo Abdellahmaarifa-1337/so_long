@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 22:20:33 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/13 17:33:21 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 18:37:42 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	set_obj_position(t_global *global)
 	global->game_cntl.enemies_mv = (t_enemy *) malloc(sizeof(t_enemy)
 			* global->game_cntl.enemy_count);
 	if (!global->game_cntl.enemies_mv)
-		throw_error(0, global);
+		throw_error(0);
 	i = -1;
 	k = 0;
 	while (++i < global->map.height)
