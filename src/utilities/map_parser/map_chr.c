@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:02:03 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/12 20:02:29 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 17:05:43 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	map_chr(t_global *global, char c)
 
 	k = 0;
 	i = 0;
-	while (i < global->map->height)
+	while (i < global->map.height)
 	{
 		j = 0;
-		while (global->map->table[i][j])
+		while (global->map.table[i][j])
 		{
-			if (global->map->table[i][j] == c)
+			if (global->map.table[i][j] == c)
 				k++;
 			j++;
 		}

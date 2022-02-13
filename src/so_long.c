@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 14:41:59 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/13 15:29:04 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 17:46:22 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	print_map(t_global *global)
 	size_t	j;
 
 	i = 0;
-	while (i < global->map->height)
+	while (i < global->map.height)
 	{
 		j = 0;
-		while (j < global->map->width)
+		while (j < global->map.width)
 		{
-			printf("%c ", global->map->table[i][j]);
+			printf("%c ", global->map.table[i][j]);
 			j++;
 		}
 		printf("\n");
@@ -53,16 +53,13 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		throw_error(1, &global);
 	map_parser(av[1], &global);
-	global.game_cntl = (t_game_cntl *)malloc(sizeof(t_game_cntl));
-	if (!global.game_cntl)
-		throw_error(0, &global);
-	global.game_cntl->mlx = mlx_init();
-	global.game_cntl->win = mlx_new_window(global.game_cntl->mlx,
-			global.map->width * 60, (global.map->height + 1) * 60, "SpaceUP");
+	global.game_cntl.mlx = mlx_init();
+	global.game_cntl.win = mlx_new_window(global.game_cntl.mlx,
+			global.map.width * 60, (global.map.height + 1) * 60, "SpaceUP");
 	load_assets(&global);
 	init_game(&global);
-	mlx_key_hook(global.game_cntl->win, key_hook, &global);
-	mlx_loop_hook(global.game_cntl->mlx, &render, &global);
-	mlx_hook(global.game_cntl->win, 17, 1L << 5, ft_close, &global);
-	mlx_loop(global.game_cntl->mlx);
+	mlx_key_hook(global.game_cntl.win, key_hook, &global);
+	mlx_loop_hook(global.game_cntl.mlx, &render, &global);
+	mlx_hook(global.game_cntl.win, 17, 1L << 5, ft_close, &global);
+	mlx_loop(global.game_cntl.mlx);
 }

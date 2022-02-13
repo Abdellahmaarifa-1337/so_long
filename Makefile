@@ -21,7 +21,6 @@ UTILITIES_SRC = src/utilities/error_handler/throw_error.c \
 				src/utilities/game_controller/init_game.c \
 				src/utilities/game_controller/player_moves.c \
 				src/utilities/game_controller/render.c \
-				src/utilities/game_controller/set_enemy_direction.c \
 				src/utilities/game_controller/move_enemies.c
 				
 

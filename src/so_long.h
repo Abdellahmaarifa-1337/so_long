@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 14:48:36 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/13 15:16:41 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 17:46:40 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_game_cntl
 	t_enemy		*enemies_mv;
 	int			exit_animate;
 	int			frame;
-	t_player	*player;
+	t_player	player;
 }	t_game_cntl;
 
 /* THE GAME ASSETS */
@@ -73,9 +73,9 @@ typedef struct s_assets
 
 typedef struct s_global
 {
-	t_map		*map;
-	t_game_cntl	*game_cntl;
-	t_assets	*assets;
+	t_map		map;
+	t_game_cntl	game_cntl;
+	t_assets	assets;
 }	t_global;
 
 /* ERRORS HANDLER */
@@ -98,7 +98,6 @@ void	move_left(t_global *global);
 void	move_right(t_global *global);
 int		ft_close(int keycode);
 int		render(t_global *global);
-void	set_enemy_direction(t_global *global);
 void	move_enemies(t_global *global);
 /* GET NEXT LINE */
 char	*get_next_line(int fd);
