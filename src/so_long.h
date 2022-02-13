@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 14:48:36 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/13 00:36:51 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 15:16:41 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ typedef struct s_player
 	size_t	current_point;
 	int		player_position[2];
 }	t_player;
+
+/* THE ENEMY */
+typedef struct s_enemy {
+	int	x;
+	int	y;
+	int	direction;
+}	t_enemy;
+
 /* THE GAME CONTROLLER */
 typedef struct s_game_cntl
 {
@@ -41,7 +49,7 @@ typedef struct s_game_cntl
 	int			game_on;
 	size_t		total_point;
 	size_t		enemy_count;
-	int			**enemies_mv;
+	t_enemy		*enemies_mv;
 	int			exit_animate;
 	int			frame;
 	t_player	*player;
@@ -90,6 +98,8 @@ void	move_left(t_global *global);
 void	move_right(t_global *global);
 int		ft_close(int keycode);
 int		render(t_global *global);
+void	set_enemy_direction(t_global *global);
+void	move_enemies(t_global *global);
 /* GET NEXT LINE */
 char	*get_next_line(int fd);
 
@@ -104,4 +114,6 @@ int		is_only_char(char *line, char *chars);
 char	*trim_new_line(char *s);
 void	ft_last_char(char *s, char *c);
 char	*ft_itoa(int n);
+/*_________________do not forget this--------*/
+void	print_map(t_global *global);
 #endif

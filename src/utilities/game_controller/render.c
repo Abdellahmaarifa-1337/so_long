@@ -6,7 +6,7 @@
 /*   By: amaarifa <amaarifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 23:03:35 by amaarifa          #+#    #+#             */
-/*   Updated: 2022/02/13 00:40:54 by amaarifa         ###   ########.fr       */
+/*   Updated: 2022/02/13 15:18:48 by amaarifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static void	load_frames(t_global *global)
 {
 	if (global->game_cntl->frame == 40)
 	{
+		move_enemies(global);
+		//set_enemy_direction(global);
 		global->game_cntl->frame = 0;
 	}
 	else if (global->game_cntl->frame == 20
@@ -76,35 +78,34 @@ static void	load_frames(t_global *global)
 		80, 10, 0xFFFFFF, ft_itoa(global->game_cntl->player->player_moves));
 	global->game_cntl->frame++;
 }
-
 int	render(t_global *global)
 {
+	int	x;
+	int	y;
+
+	x = ((global->map->width * 60) / 2);
+	y = ((global->map->height * 60) / 2);
 	if (global->game_cntl->game_on == 1)
 		load_frames(global);
 	else if (global->game_cntl->game_on == -1)
 	{
 		mlx_clear_window(global->game_cntl->mlx, global->game_cntl->win);
 		mlx_string_put(global->game_cntl->mlx, global->game_cntl->win,
-			((global->map->width * 60) / 2) - 120,
-			((global->map->height * 60) / 2) + 80,
-			0xFFFFFF, "You Lose, Shame on you!");
+			x - 120, y + 80, 0xFFFFFF, "You Lose, Shame on you!");
 		mlx_put_image_to_window(global->game_cntl->mlx, global->game_cntl->win,
-			global->assets->lose_image,
-			((global->map->width * 60) / 2) - 50,
-			((global->map->height * 60) / 2) - 50);
+			global->assets->lose_image, x - 50, y - 50);
 	}
 	else if (global->game_cntl->game_on == 0)
 	{
 		mlx_clear_window(global->game_cntl->mlx, global->game_cntl->win);
 		mlx_string_put(global->game_cntl->mlx, global->game_cntl->win,
-			((global->map->width * 60) / 2) - 60,
-			((global->map->height * 60) / 2) + 80,
-			0xFFFFFF, "Bingo !, YOU WIN");
+			x - 60, y + 80, 0xFFFFFF, "Bingo !, YOU WIN");
 		mlx_put_image_to_window(global->game_cntl->mlx, global->game_cntl->win,
-			global->assets->win_game,
-			((global->map->width * 60) / 2) - 50,
-			((global->map->height * 60) / 2) - 50);
+			global->assets->win_game, x - 50, y - 50);
 	}
 	global->game_cntl->frame++;
+	// system("clear");
+	print_map(global);
+	printf("\n");
 	return (1);
 }

@@ -1,7 +1,6 @@
 CC = cc 
-CFLAGS =  -Wall -Wextra -Werror -g
-# FLAGS FOR MLX LIBRARIES
-MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+CFLAGS =  -Wall -Wextra -Werror -g 
+MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
 # HELPERS SRC
 HELPERS_SRC = src/helpers/ft_putstr.c src/helpers/ft_strlen.c \
@@ -21,7 +20,10 @@ UTILITIES_SRC = src/utilities/error_handler/throw_error.c \
 				src/utilities/game_controller/load_assets.c \
 				src/utilities/game_controller/init_game.c \
 				src/utilities/game_controller/player_moves.c \
-				src/utilities/game_controller/render.c
+				src/utilities/game_controller/render.c \
+				src/utilities/game_controller/set_enemy_direction.c \
+				src/utilities/game_controller/move_enemies.c
+				
 
 # ALL SRCS
 SO_LONG_SRC = src/so_long.c ${HELPERS_SRC} ${UTILITIES_SRC}
